@@ -16,3 +16,7 @@ __pycache__/
 
 # OS
 .DS_Store
+
+
+# Local automation / schedulers
+*.bat
