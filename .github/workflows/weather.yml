@@ -1,0 +1,46 @@
+name: Hourly Weather Update
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hourly-weather
+  cancel-in-progress: true
+
+jobs:
+  run-weather:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run weather collection
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+        run: |
+          python weather.py
+          python generate_report.py
+
+      - name: Commit updated database and report
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add weather.db docs/weather_report.html
+          git commit -m "Hourly weather update" || echo "No changes"
+          git push
