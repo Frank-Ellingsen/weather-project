@@ -1,164 +1,125 @@
-import requests
 import sqlite3
-import os
-from dotenv import load_dotenv
+import pandas as pd
+import numpy as np
+from pathlib import Path
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
-load_dotenv()
+# =====================================================
+# ICONS + WIND ARROWS
+# =====================================================
+ICONS = {
+    "sunny": "☀️", "clear": "☀️",
+    "partly cloudy": "⛅",
+    "cloudy": "☁️",
+    "overcast": "🌥️",
+    "mist": "🌫️", "fog": "🌫️",
+    "light rain": "🌦️", "moderate rain": "🌧️",
+    "rain": "🌧️",
+    "heavy rain": "🌧️💦",
+    "snow": "❄️", "light snow": "🌨️",
+    "sleet": "🌨️🌧️",
+    "thunderstorm": "⛈️",
+    "windy": "🌬️",
+}
 
-DB_PATH = "weather.db"
-API_KEY = os.getenv("WEATHER_API_KEY")
+def get_icon(cond):
+    return ICONS.get(cond.lower(), "❓") if cond else "❓"
 
-if not API_KEY:
-    raise ValueError("Missing WEATHER_API_KEY")
+def wind_arrow(deg):
+    arrows = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
+    return arrows[int((deg + 222.5) // 45) % 8]
 
-# ONLY Kristiansand (as requested)
-LOCATION = "Kristiansand"
-
-
-URL=f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q=Kristiansand&aqi=yes"
-
-# -------------------------
-# FETCH DATA
-# -------------------------
-response = requests.get(URL, timeout=10)
-
-if response.status_code != 200:
-    raise Exception(f"API error: {response.status_code} - {response.text}")
-
-data = response.json()
-
-# -------------------------
-# CONNECT DB
-# -------------------------
-conn = sqlite3.connect(DB_PATH)
-cursor = conn.cursor()
-
-# -------------------------
-# CREATE TABLE (FULL FLAT STRUCTURE)
-# -------------------------
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS weather_kristiansand (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    -- location
-    name TEXT,
-    region TEXT,
-    country TEXT,
-    lat REAL,
-    lon REAL,
-    tz_id TEXT,
-    localtime TEXT,
-
-    -- current weather
-    last_updated TEXT,
-    temp_c REAL,
-    temp_f REAL,
-    is_day INTEGER,
-    condition_text TEXT,
-    wind_mph REAL,
-    wind_kph REAL,
-    wind_degree INTEGER,
-    wind_dir TEXT,
-    pressure_mb REAL,
-    precip_mm REAL,
-    humidity INTEGER,
-    cloud INTEGER,
-    feelslike_c REAL,
-    feelslike_f REAL,
-    windchill_c REAL,
-    windchill_f REAL,
-    heatindex_c REAL,
-    heatindex_f REAL,
-    dewpoint_c REAL,
-    dewpoint_f REAL,
-    vis_km REAL,
-    uv REAL,
-    gust_kph REAL,
-
-    -- air quality
-    co REAL,
-    no2 REAL,
-    o3 REAL,
-    so2 REAL,
-    pm2_5 REAL,
-    pm10 REAL,
-    us_epa_index INTEGER,
-    gb_defra_index INTEGER
+# =====================================================
+# LOAD DATA
+# =====================================================
+conn = sqlite3.connect("weather.db")
+df = pd.read_sql(
+    "SELECT * FROM weather_kristiansand ORDER BY last_updated DESC LIMIT 1",
+    conn,
 )
-""")
-
-# -------------------------
-# EXTRACT VALUES SAFELY
-# -------------------------
-loc = data["location"]
-cur = data["current"]
-aq = cur.get("air_quality", {})
-
-row = (
-    loc.get("name"),
-    loc.get("region"),
-    loc.get("country"),
-    loc.get("lat"),
-    loc.get("lon"),
-    loc.get("tz_id"),
-    loc.get("localtime"),
-
-    cur.get("last_updated"),
-    cur.get("temp_c"),
-    cur.get("temp_f"),
-    cur.get("is_day"),
-    cur.get("condition", {}).get("text"),
-    cur.get("wind_mph"),
-    cur.get("wind_kph"),
-    cur.get("wind_degree"),
-    cur.get("wind_dir"),
-    cur.get("pressure_mb"),
-    cur.get("precip_mm"),
-    cur.get("humidity"),
-    cur.get("cloud"),
-    cur.get("feelslike_c"),
-    cur.get("feelslike_f"),
-    cur.get("windchill_c"),
-    cur.get("windchill_f"),
-    cur.get("heatindex_c"),
-    cur.get("heatindex_f"),
-    cur.get("dewpoint_c"),
-    cur.get("dewpoint_f"),
-    cur.get("vis_km"),
-    cur.get("uv"),
-    cur.get("gust_kph"),
-
-    aq.get("co"),
-    aq.get("no2"),
-    aq.get("o3"),
-    aq.get("so2"),
-    aq.get("pm2_5"),
-    aq.get("pm10"),
-    aq.get("us-epa-index"),
-    aq.get("gb-defra-index")
-)
-
-# -------------------------
-# INSERT
-# -------------------------
-
-cursor.execute("""
-INSERT INTO weather_kristiansand (
-    name, region, country, lat, lon, tz_id, localtime,
-    last_updated, temp_c, temp_f, is_day, condition_text,
-    wind_mph, wind_kph, wind_degree, wind_dir,
-    pressure_mb, precip_mm, humidity, cloud,
-    feelslike_c, feelslike_f,
-    windchill_c, windchill_f,
-    heatindex_c, heatindex_f,
-    dewpoint_c, dewpoint_f,
-    vis_km, uv, gust_kph,
-    co, no2, o3, so2, pm2_5, pm10,
-    us_epa_index, gb_defra_index
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-""", row)
-
-conn.commit()
 conn.close()
 
-print(f"✅ Full Kristiansand weather data saved (all fields expanded)")
+w = df.iloc[0]
+
+wind_mps = w.wind_kph / 3.6
+icon = get_icon(w.condition_text)
+arrow = wind_arrow(w.wind_degree)
+
+# =====================================================
+# WIND VECTOR
+# =====================================================
+rad = np.deg2rad(w.wind_degree)
+x, y = -np.sin(rad), -np.cos(rad)
+scale = min(wind_mps / 8, 1.3)
+x *= scale
+y *= scale
+
+# =====================================================
+# FIGURE
+# =====================================================
+fig = make_subplots(
+    rows=1,
+    cols=2,
+    column_widths=[0.55, 0.45],
+    specs=[[{"type": "domain"}, {"type": "xy"}]],
+)
+
+LEFT_X_CENTER = 0.275  # exact center of left column (0.55 / 2)
+
+# -----------------------
+# LEFT PANEL
+# -----------------------
+
+# ICON
+fig.add_annotation(
+    text=icon,
+    x=LEFT_X_CENTER, y=0.85,
+    xref="paper", yref="paper",
+    font=dict(size=70),
+    showarrow=False,
+)
+
+
+
+# DETAILS
+details = (
+    f"<b>{w.temp_c} °C</b><br><br><br>"
+    f"<b>{w.condition_text}</b><br><br><br>"
+    f"{arrow} Wind: {wind_mps:.1f} m/s {w.wind_dir}<br>"
+    f"Humidity: {w.humidity}%<br>"
+    f"Pressure: {w.pressure_mb} mb<br><br>"
+    f"{w.localtime}"
+)
+
+fig.add_annotation(
+    text=details,
+    x=LEFT_X_CENTER, y=0.40,
+    xref="paper", yref="paper",
+    align="left",
+    showarrow=False,
+    font=dict(size=14),
+)
+
+
+
+# -----------------------
+# FINAL LAYOUT
+# -----------------------
+fig.update_layout(
+    title="Kristiansand Weather Report",
+    height=460,
+    margin=dict(t=50, l=10),
+    paper_bgcolor="white",
+    xaxis=dict(visible=False),
+    yaxis=dict(visible=False),
+    xaxis2=dict(visible=False, range=[-1.5, 1.5]),
+    yaxis2=dict(visible=False, range=[-1.5, 1.5]),
+)
+
+# -----------------------
+# SAVE
+# -----------------------
+out = Path("docs") / "index.html"
+fig.write_html(out)
+print("✅ Saved:", out)
