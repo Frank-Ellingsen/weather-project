@@ -9,19 +9,49 @@ from plotly.subplots import make_subplots
 # ICONS + WIND ARROWS
 # =====================================================
 ICONS = {
-    "sunny": "☀️", "clear": "☀️",
-    "partly cloudy": "⛅",
-    "cloudy": "☁️",
-    "overcast": "🌥️",
-    "mist": "🌫️", "fog": "🌫️",
-    "light rain": "🌦️", "moderate rain": "🌧️",
-    "rain": "🌧️",
-    "heavy rain": "🌧️💦",
-    "snow": "❄️", "light snow": "🌨️",
-    "sleet": "🌨️🌧️",
-    "thunderstorm": "⛈️",
-    "windy": "🌬️",
+    # Clear / Cloud
+    'sunny': '☀️',
+    'clear': '☀️',
+    'partly cloudy': '⛅',
+    'cloudy': '☁️',
+    'overcast': '🌥️',
+
+    # Fog / Mist
+    'mist': '🌫️',
+    'fog': '🌫️',
+
+    # Rain
+    'patchy rain nearby': '🌦️',
+    'light rain': '🌦️',
+    'moderate rain': '🌧️',
+    'heavy rain': '🌧️💦',
+    'rain': '🌧️',
+    'light drizzle': '🌦️',
+    'moderate drizzle': '🌧️',
+
+    # Snow
+    'light snow': '🌨️',
+    'snow': '❄️',
+    'heavy snow': '❄️❄️',
+    'patchy snow': '🌨️',
+
+    # Sleet
+    'sleet': '🌨️🌧️',
+    'light sleet': '🌨️🌦️',
+    'light sleet showers': '🌨️🌦️',
+    'moderate sleet': '🌨️🌧️',
+    'moderate or heavy sleet': '🌨️🌧️💦',
+    'heavy sleet': '🌨️🌧️💦',
+
+    # Freezing rain
+    'light freezing rain': '🌧️🧊',
+    'freezing rain': '🌧️🧊',
+
+    # Thunder / Wind
+    'thunderstorm': '⛈️',
+    'windy': '🌬️'
 }
+
 
 def get_icon(cond):
     return ICONS.get(cond.lower(), "❓") if cond else "❓"
