@@ -31,7 +31,7 @@ if not API_KEY:
 LOCATION = "Kristiansand"
 
 
-url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={LOCATION}&aqi=yes"
+url = f"http://api.weatherapi.com/v1/current.json?key=766b1edc578a44a8ba6161712250908&q=Kristiansand&aqi=yes"
 
 # -------------------------
 # FETCH DATA
