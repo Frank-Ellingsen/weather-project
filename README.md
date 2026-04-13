@@ -1,8 +1,9 @@
+https://frank-ellingsen.github.io/weather-project/
+[Weather Project](https://frank-ellingsen.github.io/weather-project/)
 # Weather Project 🌦️
 
 Automated Python project that collects weather data on an hourly schedule, stores it in a SQLite database, and generates an up‑to‑date HTML weather report using GitHub Actions.
 
----
 
 ## 📌 Features
 
