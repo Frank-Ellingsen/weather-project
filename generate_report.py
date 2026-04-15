@@ -29,7 +29,7 @@ def get_icon(cond):
 
 def wind_arrow(deg):
     arrows = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
-    return arrows[int((deg + 22.5) // 45) % 8]
+    return arrows[int((deg + 222.5) // 45) % 8]
 
 # =====================================================
 # SVG CHART GENERATOR
@@ -254,7 +254,7 @@ footer {{ text-align: center; font-size: 0.8rem; opacity: 0.6; padding: 1.5rem; 
         <div class="time">Last updated: {w.localtime}</div>
     </section>
 </main>
-<footer>Auto-updates every 5 minutes • Data via WeatherAPI</footer>
+<footer>Auto-updates every 15 minutes • Data via WeatherAPI</footer>
 </body>
 </html>
 """
