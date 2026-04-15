@@ -14,7 +14,7 @@ if not API_KEY:
     raise ValueError("Missing WEATHER_API_KEY environment variable.")
 
 LOCATION = "Kristiansand"
-URL = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={LOCATION}&aqi=yes"
+URL = f"http://api.weatherapi.com/v1/current.json?key=766b1edc578a44a8ba6161712250908&q=Kristiansand&aqi=yes"
 
 # =====================================================
 # FETCH DATA
