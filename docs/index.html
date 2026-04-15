@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Live Weather Dashboard</title>
-<!-- 🔄 Auto refresh every 5 minutes -->
 <meta http-equiv="refresh" content="300">
 
 <style>
@@ -36,125 +35,106 @@ main {
 
 .card {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 24px;
-    padding: 2.5rem;
+    padding: 2rem;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.current-weather {
     text-align: center;
-}
-
-.icon {
-    font-size: 6rem;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
-}
-
-.temp {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin: 0.5rem 0;
-    background: linear-gradient(to bottom, #fff, #cbd5e1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.condition {
-    font-size: 1.4rem;
-    font-weight: 500;
     margin-bottom: 2rem;
-    color: #94a3b8;
-    text-transform: capitalize;
 }
+
+.icon { font-size: 5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 15px rgba(255,255,255,0.1)); }
+.temp { font-size: 3.5rem; font-weight: 800; margin: 0.5rem 0; background: linear-gradient(to bottom, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.condition { font-size: 1.3rem; color: #94a3b8; text-transform: capitalize; margin-bottom: 1.5rem; }
 
 .details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    text-align: left;
+    gap: 1rem;
     background: rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-radius: 16px;
 }
 
-.detail-item {
-    display: flex;
-    flex-direction: column;
+.detail-item { display: flex; flex-direction: column; }
+.detail-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+.detail-value { font-size: 1rem; font-weight: 600; }
+
+.trend-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.detail-label {
-    font-size: 0.8rem;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
+.trend-title { font-size: 0.8rem; color: #64748b; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+.trend-chart { width: 100%; height: 120px; overflow: visible; }
 
-.detail-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-}
+.time { text-align: center; font-size: 0.8rem; opacity: 0.4; margin-top: 2rem; }
 
-.time {
-    font-size: 0.85rem;
-    opacity: 0.5;
-    margin-top: 1rem;
-}
-
-footer {
-    text-align: center;
-    font-size: 0.8rem;
-    opacity: 0.6;
-    padding: 1.5rem;
-}
+footer { text-align: center; font-size: 0.8rem; opacity: 0.6; padding: 1.5rem; }
 
 @media (max-width: 480px) {
     .card { padding: 1.5rem; }
-    .details { grid-template-columns: 1fr; gap: 1rem; }
+    .details { grid-template-columns: 1fr; }
+    .trend-chart { height: 80px; }
 }
 </style>
 </head>
 
 <body>
-<header>
-    🌍 Kristiansand Weather
-</header>
-
+<header>🌍 Kristiansand Weather</header>
 <main>
     <section class="card">
-        <div class="icon">⛅</div>
-        <div class="temp">8.0 °C</div>
-        <div class="condition">Partly cloudy</div>
-        
-        <div class="details">
-            <div class="detail-item">
-                <span class="detail-label">Wind</span>
-                <span class="detail-value">→ 4.7 m/s ENE</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Humidity</span>
-                <span class="detail-value">76%</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Pressure</span>
-                <span class="detail-value">1023.0 mb</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Region</span>
-                <span class="detail-value">Kristiansand</span>
+        <div class="current-weather">
+            <div class="icon">⛅</div>
+            <div class="temp">8.0 °C</div>
+            <div class="condition">Partly cloudy</div>
+            
+            <div class="details">
+                <div class="detail-item"><span class="detail-label">Wind</span><span class="detail-value">→ 4.7 m/s ENE</span></div>
+                <div class="detail-item"><span class="detail-label">Humidity</span><span class="detail-value">76%</span></div>
+                <div class="detail-item"><span class="detail-label">Pressure</span><span class="detail-value">1023.0 mb</span></div>
+                <div class="detail-item"><span class="detail-label">Region</span><span class="detail-value">Kristiansand</span></div>
             </div>
         </div>
 
-        <div class="time">
-            Last updated: 2026-04-15 16:46
+        <div class="trend-section">
+            <div class="trend-title">Temperature Trend + Trendline (Last 14 Days)</div>
+            
+    <svg viewBox="0 0 800 200" class="trend-chart" preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.4" />
+                <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0" />
+            </linearGradient>
+        </defs>
+        <!-- Horizontal Guide Lines -->
+        <line x1="40" y1="170" x2="760" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+        <line x1="40" y1="30" x2="760" y2="30" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+        
+        <!-- Data Line -->
+        <path d="M 40.0,150.0 L 52.6,150.0 L 65.3,150.0 L 77.9,150.0 L 90.5,140.0 L 103.2,123.3 L 115.8,116.7 L 128.4,116.7 L 141.1,118.3 L 153.7,123.3 L 166.3,118.3 L 178.9,121.7 L 191.6,116.7 L 204.2,116.7 L 216.8,116.7 L 229.5,116.7 L 242.1,116.7 L 254.7,68.3 L 267.4,68.3 L 280.0,68.3 L 292.6,51.7 L 305.3,50.0 L 317.9,50.0 L 330.5,50.0 L 343.2,50.0 L 355.8,55.0 L 368.4,121.7 L 381.1,121.7 L 393.7,101.7 L 406.3,106.7 L 418.9,101.7 L 431.6,106.7 L 444.2,103.3 L 456.8,106.7 L 469.5,88.3 L 482.1,100.0 L 494.7,100.0 L 507.4,85.0 L 520.0,88.3 L 532.6,90.0 L 545.3,88.3 L 557.9,88.3 L 570.5,101.7 L 583.2,103.3 L 595.8,106.7 L 608.4,103.3 L 621.1,88.3 L 633.7,86.7 L 646.3,90.0 L 658.9,70.0 L 671.6,66.7 L 684.2,70.0 L 696.8,71.7 L 709.5,66.7 L 722.1,56.7 L 734.7,56.7 L 747.4,56.7 L 760.0,56.7 L 760,170 L 40,170 Z" fill="url(#grad)" stroke="none" />
+        <path d="M 40.0,150.0 L 52.6,150.0 L 65.3,150.0 L 77.9,150.0 L 90.5,140.0 L 103.2,123.3 L 115.8,116.7 L 128.4,116.7 L 141.1,118.3 L 153.7,123.3 L 166.3,118.3 L 178.9,121.7 L 191.6,116.7 L 204.2,116.7 L 216.8,116.7 L 229.5,116.7 L 242.1,116.7 L 254.7,68.3 L 267.4,68.3 L 280.0,68.3 L 292.6,51.7 L 305.3,50.0 L 317.9,50.0 L 330.5,50.0 L 343.2,50.0 L 355.8,55.0 L 368.4,121.7 L 381.1,121.7 L 393.7,101.7 L 406.3,106.7 L 418.9,101.7 L 431.6,106.7 L 444.2,103.3 L 456.8,106.7 L 469.5,88.3 L 482.1,100.0 L 494.7,100.0 L 507.4,85.0 L 520.0,88.3 L 532.6,90.0 L 545.3,88.3 L 557.9,88.3 L 570.5,101.7 L 583.2,103.3 L 595.8,106.7 L 608.4,103.3 L 621.1,88.3 L 633.7,86.7 L 646.3,90.0 L 658.9,70.0 L 671.6,66.7 L 684.2,70.0 L 696.8,71.7 L 709.5,66.7 L 722.1,56.7 L 734.7,56.7 L 747.4,56.7 L 760.0,56.7" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <!-- Mathematical Trendline (Dashed) -->
+        <line x1="40.0" y1="124.9" x2="760.0" y2="65.5" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- Labels -->
+        <text x="35" y="175" fill="#64748b" font-size="12" text-anchor="end">2.4°</text>
+        <text x="35" y="35" fill="#64748b" font-size="12" text-anchor="end">8.4°</text>
+    </svg>
+    
         </div>
+
+        <div class="time">Last updated: 2026-04-15 16:46</div>
     </section>
 </main>
-
-<footer>
-    Auto-updates every 5 minutes • Data via WeatherAPI
-</footer>
+<footer>Auto-updates every 5 minutes • Data via WeatherAPI</footer>
 </body>
 </html>
