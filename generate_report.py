@@ -1,9 +1,6 @@
 import sqlite3
 import pandas as pd
-import numpy as np
 from pathlib import Path
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 # =====================================================
 # ICONS + WIND ARROWS
@@ -52,13 +49,12 @@ ICONS = {
     'windy': '🌬️'
 }
 
-
 def get_icon(cond):
     return ICONS.get(cond.lower(), "❓") if cond else "❓"
 
 def wind_arrow(deg):
     arrows = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
-    return arrows[int((deg + 222.5) // 45) % 8]
+    return arrows[int((deg + 22.5) // 45) % 8]
 
 # =====================================================
 # LOAD DATA
@@ -70,113 +66,32 @@ df = pd.read_sql(
 )
 conn.close()
 
-w = df.iloc[0]
+if df.empty:
+    print("❌ No data found in database.")
+    exit(1)
 
+w = df.iloc[0]
 wind_mps = w.wind_kph / 3.6
 icon = get_icon(w.condition_text)
 arrow = wind_arrow(w.wind_degree)
 
 # =====================================================
-# WIND VECTOR
+# DASHBOARD TEMPLATE
 # =====================================================
-rad = np.deg2rad(w.wind_degree)
-x, y = -np.sin(rad), -np.cos(rad)
-scale = min(wind_mps / 8, 1.3)
-x *= scale
-y *= scale
-
-# =====================================================
-# FIGURE
-# =====================================================
-fig = make_subplots(
-    rows=1,
-    cols=2,
-    column_widths=[0.55, 0.45],
-    specs=[[{"type": "domain"}, {"type": "xy"}]],
-)
-
-LEFT_X_CENTER = 0.275  # exact center of left column (0.55 / 2)
-
-# -----------------------
-# LEFT PANEL
-# -----------------------
-
-# ICON
-fig.add_annotation(
-    text=icon,
-    x=LEFT_X_CENTER, y=0.85,
-    xref="paper", yref="paper",
-    font=dict(size=70),
-    showarrow=False,
-)
-
-
-
-# DETAILS
-details = (
-    f"<b>{w.temp_c} °C</b><br><br><br>"
-    f"<b>{w.condition_text}</b><br><br><br>"
-    f"{arrow} Wind: {wind_mps:.1f} m/s {w.wind_dir}<br>"
-    f"Humidity: {w.humidity}%<br>"
-    f"Pressure: {w.pressure_mb} mb<br><br>"
-    f"{w.localtime}"
-)
-
-fig.add_annotation(
-    text=details,
-    x=LEFT_X_CENTER, y=0.40,
-    xref="paper", yref="paper",
-    align="left",
-    showarrow=False,
-    font=dict(size=14),
-)
-
-
-
-# -----------------------
-# FINAL LAYOUT (Improved)
-# -----------------------
-fig.update_layout(
-    title="🌤️ Kristiansand Weather",
-    height=500,
-    margin=dict(t=60, l=20, r=20, b=20),
-    paper_bgcolor="#0f172a",
-    plot_bgcolor="#0f172a",
-    font=dict(color="#e2e8f0"),
-    xaxis=dict(visible=False),
-    yaxis=dict(visible=False),
-    xaxis2=dict(visible=False, range=[-1.5, 1.5]),
-    yaxis2=dict(visible=False, range=[-1.5, 1.5]),
-)
-
-# -----------------------
-# EXPORT CLEAN HTML
-# -----------------------
-html = fig.to_html(
-    full_html=False,
-    include_plotlyjs="cdn",   # 🚀 no giant inline JS
-    config={"responsive": True}
-)
-
-# -----------------------
-# DASHBOARD WRAPPER
-# -----------------------
 dashboard = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Live Weather Dashboard</title>
-
 <!-- 🔄 Auto refresh every 5 minutes -->
 <meta http-equiv="refresh" content="300">
 
 <style>
 body {{
     margin: 0;
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, #0f172a, #1e293b);
     color: #e2e8f0;
     display: flex;
@@ -186,9 +101,9 @@ body {{
 
 header {{
     text-align: center;
-    padding: 1rem;
-    font-size: 1.4rem;
-    font-weight: 600;
+    padding: 2rem 1rem;
+    font-size: 1.8rem;
+    font-weight: 700;
 }}
 
 main {{
@@ -201,47 +116,134 @@ main {{
 
 .card {{
     width: 100%;
-    max-width: 900px;
-    background: rgba(255,255,255,0.05);
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 2.5rem;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}}
+
+.icon {{
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+}}
+
+.temp {{
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    background: linear-gradient(to bottom, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}}
+
+.condition {{
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #94a3b8;
+    text-transform: capitalize;
+}}
+
+.details {{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
     border-radius: 16px;
-    padding: 1rem;
-    backdrop-filter: blur(10px);
+}}
+
+.detail-item {{
+    display: flex;
+    flex-direction: column;
+}}
+
+.detail-label {{
+    font-size: 0.8rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}}
+
+.detail-value {{
+    font-size: 1.1rem;
+    font-weight: 600;
+}}
+
+.time {{
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-top: 1rem;
 }}
 
 footer {{
     text-align: center;
     font-size: 0.8rem;
-    opacity: 0.7;
-    padding: 0.5rem;
+    opacity: 0.6;
+    padding: 1.5rem;
 }}
 
+@media (max-width: 480px) {{
+    .card {{ padding: 1.5rem; }}
+    .details {{ grid-template-columns: 1fr; gap: 1rem; }}
+}}
 </style>
 </head>
 
 <body>
-
 <header>
-    🌍 Live Weather Dashboard
+    🌍 Kristiansand Weather
 </header>
 
 <main>
     <section class="card">
-        {html}
+        <div class="icon">{icon}</div>
+        <div class="temp">{w.temp_c} °C</div>
+        <div class="condition">{w.condition_text}</div>
+        
+        <div class="details">
+            <div class="detail-item">
+                <span class="detail-label">Wind</span>
+                <span class="detail-value">{arrow} {wind_mps:.1f} m/s {w.wind_dir}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Humidity</span>
+                <span class="detail-value">{w.humidity}%</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Pressure</span>
+                <span class="detail-value">{w.pressure_mb} mb</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Region</span>
+                <span class="detail-value">Kristiansand</span>
+            </div>
+        </div>
+
+        <div class="time">
+            Last updated: {w.localtime}
+        </div>
     </section>
 </main>
 
 <footer>
-    Auto-updates every 5 minutes
+    Auto-updates every 5 minutes • Data via WeatherAPI
 </footer>
-
 </body>
 </html>
 """
 
-# -----------------------
+# =====================================================
 # SAVE
-# -----------------------
+# =====================================================
 out = Path("docs") / "index.html"
 out.write_text(dashboard, encoding="utf-8")
 
-print("✅ Live dashboard saved:", out)
+print("✅ Clean dashboard saved:", out)
