@@ -134,13 +134,15 @@ fig.add_annotation(
 
 
 # -----------------------
-# FINAL LAYOUT
+# FINAL LAYOUT (Improved)
 # -----------------------
 fig.update_layout(
-    title="Kristiansand Weather Report",
-    height=460,
-    margin=dict(t=50, l=10),
-    paper_bgcolor="white",
+    title="🌤️ Kristiansand Weather",
+    height=500,
+    margin=dict(t=60, l=20, r=20, b=20),
+    paper_bgcolor="#0f172a",
+    plot_bgcolor="#0f172a",
+    font=dict(color="#e2e8f0"),
     xaxis=dict(visible=False),
     yaxis=dict(visible=False),
     xaxis2=dict(visible=False, range=[-1.5, 1.5]),
@@ -148,8 +150,98 @@ fig.update_layout(
 )
 
 # -----------------------
+# EXPORT CLEAN HTML
+# -----------------------
+html = fig.to_html(
+    full_html=False,
+    include_plotlyjs="cdn",   # 🚀 no giant inline JS
+    config={"responsive": True}
+)
+
+# -----------------------
+# DASHBOARD WRAPPER
+# -----------------------
+dashboard = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Live Weather Dashboard</title>
+
+<!-- 🔄 Auto refresh every 5 minutes -->
+<meta http-equiv="refresh" content="300">
+
+<style>
+body {{
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}}
+
+header {{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}}
+
+main {{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}}
+
+.card {{
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}}
+
+footer {{
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    padding: 0.5rem;
+}}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    🌍 Live Weather Dashboard
+</header>
+
+<main>
+    <section class="card">
+        {html}
+    </section>
+</main>
+
+<footer>
+    Auto-updates every 5 minutes
+</footer>
+
+</body>
+</html>
+"""
+
+# -----------------------
 # SAVE
 # -----------------------
 out = Path("docs") / "index.html"
-fig.write_html(out)
-print("✅ Saved:", out)
+out.write_text(dashboard, encoding="utf-8")
+
+print("✅ Live dashboard saved:", out)
