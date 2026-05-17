@@ -336,3 +336,9 @@ To https://github.com/Frank-Ellingsen/weather-project.git
 [Sun 05/17/2026 18:10:44.27] SUCCESS: Task completed. 
 [Sun 05/17/2026 18:10:44.27] --- Weather Task Ended --- 
  
+[Sun 05/17/2026 18:21:02.81] --- Weather Task Started --- 
+[Sun 05/17/2026 18:21:02.84] Running weather.py... 
+[SUCCESS] Weather data for Kristiansand saved successfully.
+[Sun 05/17/2026 18:21:03.66] Running generate_report.py... 
+[SUCCESS] Dashboard with trendline saved: C:\Users\frank\Desktop\github\weather-project\docs\index.html
+[Sun 05/17/2026 18:21:04.48] Uploading to GitHub... 
