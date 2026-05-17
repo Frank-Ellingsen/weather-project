@@ -42,10 +42,12 @@ def generate_svg_chart(history_df):
     width = 800
     height = 200
     padding_x = 40
-    padding_y = 30
+    padding_y_top = 30
+    padding_y_bottom = 40 # Space for date labels
     
-    # Extract and reverse to get chronological order (DESC in query)
-    temps = history_df['temp_c'].tolist()[::-1]
+    # Chronological order
+    temps = history_df['temp_c'].tolist()
+    times = pd.to_datetime(history_df['last_updated'])
     n = len(temps)
     x_indices = list(range(n))
     
@@ -59,6 +61,8 @@ def generate_svg_chart(history_df):
     y_max = max_temp + (temp_range * 0.2)
     y_range = y_max - y_min
     
+    chart_h = height - padding_y_top - padding_y_bottom
+    
     # Calculate Linear Regression (y = ax + b)
     sum_x = sum(x_indices)
     sum_y = sum(temps)
@@ -66,6 +70,7 @@ def generate_svg_chart(history_df):
     sum_xx = sum(xi * xi for xi in x_indices)
     
     denom = (n * sum_xx - sum_x**2)
+    trendline_svg = ""
     if denom != 0:
         a = (n * sum_xy - sum_x * sum_y) / denom
         b = (sum_y - a * sum_x) / n
@@ -76,23 +81,33 @@ def generate_svg_chart(history_df):
         
         # Scale to SVG
         x1 = padding_x
-        y1 = height - ((y1_val - y_min) / y_range * (height - 2 * padding_y) + padding_y)
+        y1 = height - padding_y_bottom - ((y1_val - y_min) / y_range * chart_h)
         x2 = width - padding_x
-        y2 = height - ((y2_val - y_min) / y_range * (height - 2 * padding_y) + padding_y)
+        y2 = height - padding_y_bottom - ((y2_val - y_min) / y_range * chart_h)
         trendline_svg = f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="5,5" />'
-    else:
-        trendline_svg = ""
 
     # Generate data points
     points = []
     for i, t in enumerate(temps):
         x = (i / (n - 1)) * (width - 2 * padding_x) + padding_x
-        y = height - ((t - y_min) / y_range * (height - 2 * padding_y) + padding_y)
+        y = height - padding_y_bottom - ((t - y_min) / y_range * chart_h)
         points.append(f"{x:.1f},{y:.1f}")
     
     path_d = "M " + " L ".join(points)
-    fill_d = f"{path_d} L {width-padding_x},{height-padding_y} L {padding_x},{height-padding_y} Z"
+    fill_d = f"{path_d} L {width-padding_x},{height-padding_y_bottom} L {padding_x},{height-padding_y_bottom} Z"
     
+    # Date Labels (x-axis)
+    num_labels = 5
+    label_indices = [int(i * (n - 1) / (num_labels - 1)) for i in range(num_labels)]
+    date_labels_svg = ""
+    for idx in label_indices:
+        x = (idx / (n - 1)) * (width - 2 * padding_x) + padding_x
+        date_str = times.iloc[idx].strftime('%d %b')
+        anchor = "middle"
+        if idx == 0: anchor = "start"
+        elif idx == n-1: anchor = "end"
+        date_labels_svg += f'<text x="{x:.1f}" y="{height-10}" fill="#64748b" font-size="10" text-anchor="{anchor}">{date_str}</text>\n'
+
     svg = f"""
     <svg viewBox="0 0 {width} {height}" class="trend-chart" preserveAspectRatio="none">
         <defs>
@@ -102,8 +117,8 @@ def generate_svg_chart(history_df):
             </linearGradient>
         </defs>
         <!-- Horizontal Guide Lines -->
-        <line x1="{padding_x}" y1="{height-padding_y}" x2="{width-padding_x}" y2="{height-padding_y}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
-        <line x1="{padding_x}" y1="{padding_y}" x2="{width-padding_x}" y2="{padding_y}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+        <line x1="{padding_x}" y1="{height-padding_y_bottom}" x2="{width-padding_x}" y2="{height-padding_y_bottom}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+        <line x1="{padding_x}" y1="{padding_y_top}" x2="{width-padding_x}" y2="{padding_y_top}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
         
         <!-- Data Line -->
         <path d="{fill_d}" fill="url(#grad)" stroke="none" />
@@ -113,8 +128,11 @@ def generate_svg_chart(history_df):
         {trendline_svg}
         
         <!-- Labels -->
-        <text x="{padding_x-5}" y="{height-padding_y+5}" fill="#64748b" font-size="12" text-anchor="end">{min_temp:.1f}°</text>
-        <text x="{padding_x-5}" y="{padding_y+5}" fill="#64748b" font-size="12" text-anchor="end">{max_temp:.1f}°</text>
+        <text x="{padding_x-5}" y="{height-padding_y_bottom+5}" fill="#64748b" font-size="12" text-anchor="end">{min_temp:.1f}°</text>
+        <text x="{padding_x-5}" y="{padding_y_top+5}" fill="#64748b" font-size="12" text-anchor="end">{max_temp:.1f}°</text>
+        
+        <!-- Date Indicators -->
+        {date_labels_svg}
     </svg>
     """
     return svg
@@ -124,7 +142,7 @@ def generate_svg_chart(history_df):
 # =====================================================
 conn = sqlite3.connect("weather.db")
 df = pd.read_sql("SELECT * FROM weather_kristiansand ORDER BY last_updated DESC LIMIT 1", conn)
-history_df = pd.read_sql("SELECT temp_c, last_updated FROM weather_kristiansand ORDER BY last_updated DESC LIMIT 336", conn)
+history_df = pd.read_sql("SELECT temp_c, last_updated FROM weather_kristiansand ORDER BY last_updated ASC", conn)
 conn.close()
 
 if df.empty:
@@ -247,7 +265,7 @@ footer {{ text-align: center; font-size: 0.8rem; opacity: 0.6; padding: 1.5rem; 
         </div>
 
         <div class="trend-section">
-            <div class="trend-title">Temperature Trend + Trendline (Last 14 Days)</div>
+            <div class="trend-title">Temperature Trend </div>
             {svg_chart}
         </div>
 
