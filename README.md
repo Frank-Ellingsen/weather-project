@@ -15,6 +15,12 @@ Automated Python project that collects weather data on an hourly schedule, store
 
 ---
 
+## 📊 Monitoring
+
+- **Status:** Check `last_run_status.txt` for the latest execution result.
+- **Detailed Logs:** See `task_log.txt` for a full history of runs and errors.
+- **Dashboard:** View the live data at [https://frank-ellingsen.github.io/weather-project/](https://frank-ellingsen.github.io/weather-project/)
+
 ## 🗂️ Project Structure
 
 ```text
