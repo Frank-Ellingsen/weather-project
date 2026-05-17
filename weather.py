@@ -14,7 +14,7 @@ if not API_KEY:
     raise ValueError("Missing WEATHER_API_KEY environment variable.")
 
 LOCATION = "Kristiansand"
-URL = f"http://api.weatherapi.com/v1/current.json?key=766b1edc578a44a8ba6161712250908&q=Kristiansand&aqi=yes"
+URL = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={LOCATION}&aqi=yes"
 
 # =====================================================
 # FETCH DATA
@@ -24,7 +24,7 @@ try:
     response.raise_for_status()
     data = response.json()
 except Exception as e:
-    print(f"❌ Failed to fetch weather data: {e}")
+    print(f"[ERROR] Failed to fetch weather data: {e}")
     exit(1)
 
 # =====================================================
@@ -118,8 +118,8 @@ try:
 
     conn.commit()
     conn.close()
-    print(f"✅ Weather data for {LOCATION} saved successfully.")
+    print(f"[SUCCESS] Weather data for {LOCATION} saved successfully.")
 
 except Exception as e:
-    print(f"❌ Failed to save data to database: {e}")
+    print(f"[ERROR] Failed to save data to database: {e}")
     exit(1)

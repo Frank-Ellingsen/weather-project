@@ -1,0 +1,222 @@
+[Sun 05/17/2026 10:23:50.83] --- Weather Task Started --- 
+[Sun 05/17/2026 10:23:50.84] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 10:23:50.97] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 10:23:50.98] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 10:24:07.19] --- Weather Task Started --- 
+[Sun 05/17/2026 10:24:07.20] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 10:24:07.31] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 10:24:07.31] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 10:24:20.07] --- Weather Task Started --- 
+[Sun 05/17/2026 10:24:20.07] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 10:24:20.18] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 10:24:20.19] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 10:51:01.17] --- Weather Task Started --- 
+[Sun 05/17/2026 10:51:01.18] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 10:51:01.81] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 10:51:01.82] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 11:21:00.97] --- Weather Task Started --- 
+[Sun 05/17/2026 11:21:00.97] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 11:21:01.11] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 11:21:01.13] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 11:51:01.37] --- Weather Task Started --- 
+[Sun 05/17/2026 11:51:01.37] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 11:51:01.57] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 11:51:01.59] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 12:21:01.23] --- Weather Task Started --- 
+[Sun 05/17/2026 12:21:01.24] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 12:21:01.61] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 12:21:01.63] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 12:51:01.38] --- Weather Task Started --- 
+[Sun 05/17/2026 12:51:01.38] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 12:51:01.60] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 12:51:01.61] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 13:21:01.38] --- Weather Task Started --- 
+[Sun 05/17/2026 13:21:01.38] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 13:21:01.48] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 13:21:01.49] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 13:51:01.35] --- Weather Task Started --- 
+[Sun 05/17/2026 13:51:01.35] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 13:51:01.45] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 13:51:01.45] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 14:21:01.37] --- Weather Task Started --- 
+[Sun 05/17/2026 14:21:01.37] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 14:21:01.47] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 14:21:01.47] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 14:51:01.44] --- Weather Task Started --- 
+[Sun 05/17/2026 14:51:01.44] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 14:51:01.53] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 14:51:01.54] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 15:21:01.39] --- Weather Task Started --- 
+[Sun 05/17/2026 15:21:01.39] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 15:21:01.50] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 15:21:01.52] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 15:51:01.38] --- Weather Task Started --- 
+[Sun 05/17/2026 15:51:01.38] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 15:51:01.47] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 15:51:01.48] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 16:21:01.06] --- Weather Task Started --- 
+[Sun 05/17/2026 16:21:01.06] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 16:21:01.22] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 16:21:01.23] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 16:51:00.99] --- Weather Task Started --- 
+[Sun 05/17/2026 16:51:00.99] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+[Sun 05/17/2026 16:51:01.11] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 16:51:01.12] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 17:21:01.38] --- Weather Task Started --- 
+[Sun 05/17/2026 17:21:01.39] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 121, in <module>
+    print(f"\u2705 Weather data for {LOCATION} saved successfully.")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 0: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 124, in <module>
+    print(f"\u274c Failed to save data to database: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
+[Sun 05/17/2026 17:21:02.88] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 17:21:02.89] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 17:44:47.03] --- Weather Task Started --- 
+[Sun 05/17/2026 17:44:47.03] Running weather.py... 
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 121, in <module>
+    print(f"\u2705 Weather data for {LOCATION} saved successfully.")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 0: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\frank\Desktop\github\weather-project\weather.py", line 124, in <module>
+    print(f"\u274c Failed to save data to database: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
+[Sun 05/17/2026 17:44:47.67] ERROR: weather.py failed with exit code 1. 
+[Sun 05/17/2026 17:44:47.68] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 17:46:01.86] --- Weather Task Started --- 
+[Sun 05/17/2026 17:46:01.86] Running weather.py... 
+[SUCCESS] Weather data for Kristiansand saved successfully.
+[Sun 05/17/2026 17:46:02.50] Running generate_report.py... 
+[SUCCESS] Dashboard with trendline saved: C:\Users\frank\Desktop\github\weather-project\docs\index.html
+[Sun 05/17/2026 17:46:05.36] Uploading to GitHub... 
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'frank@frankpc.(none)')
+Everything up-to-date
+[Sun 05/17/2026 17:46:07.09] SUCCESS: GitHub upload completed. 
+[Sun 05/17/2026 17:46:07.10] SUCCESS: Task completed. 
+[Sun 05/17/2026 17:46:07.11] --- Weather Task Ended --- 
+ 
+[Sun 05/17/2026 17:46:31.00] --- Weather Task Started --- 
+[Sun 05/17/2026 17:46:31.00] Running weather.py... 
+[SUCCESS] Weather data for Kristiansand saved successfully.
+[Sun 05/17/2026 17:46:31.54] Running generate_report.py... 
+[SUCCESS] Dashboard with trendline saved: C:\Users\frank\Desktop\github\weather-project\docs\index.html
+[Sun 05/17/2026 17:46:32.28] Uploading to GitHub... 

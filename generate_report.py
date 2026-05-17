@@ -128,7 +128,7 @@ history_df = pd.read_sql("SELECT temp_c, last_updated FROM weather_kristiansand 
 conn.close()
 
 if df.empty:
-    print("❌ No data found in database.")
+    print("[ERROR] No data found in database.")
     exit(1)
 
 w = df.iloc[0]
@@ -262,6 +262,6 @@ footer {{ text-align: center; font-size: 0.8rem; opacity: 0.6; padding: 1.5rem; 
 # =====================================================
 # SAVE
 # =====================================================
-out = Path("docs") / "index.html"
-out.write_text(dashboard, encoding="utf-8")
-print("✅ Dashboard with trendline saved:", out)
+out_path = Path(__file__).parent / "docs" / "index.html"
+out_path.write_text(dashboard, encoding="utf-8")
+print("[SUCCESS] Dashboard with trendline saved:", out_path)
