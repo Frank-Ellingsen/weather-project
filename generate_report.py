@@ -12,7 +12,7 @@ ICONS = {
     'mist': '🌫️', 'fog': '🌫️',
     # Rain
     'patchy rain nearby': '🌦️', 'light rain': '🌦️', 'moderate rain': '🌧️', 'heavy rain': '🌧️💦',
-    'rain': '🌧️', 'light drizzle': '🌦️', 'moderate drizzle': '🌧️',
+    'rain': '🌧️', 'light drizzle': '🌦️', 'moderate drizzle': '🌧️','light shower rain': '☁️🌧️'
     # Snow
     'light snow': '🌨️', 'snow': '❄️', 'heavy snow': '❄️❄️', 'patchy snow': '🌨️',
     # Sleet
