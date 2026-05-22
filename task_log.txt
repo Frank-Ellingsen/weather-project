@@ -1376,4 +1376,22 @@ To https://github.com/Frank-Ellingsen/weather-project.git
          d a t e _ s t r   =   t i m e s . i l o c [ i d x ] . s t r f t i m e ( ' % d   % b ' )  
      F i l e   " p a n d a s / _ l i b s / t s l i b s / n a t t y p e . p y x " ,   l i n e   5 4 ,   i n   p a n d a s . _ l i b s . t s l i b s . n a t t y p e . _ m a k e _ e r r o r _ f u n c . f  
  V a l u e E r r o r :   N a T T y p e   d o e s   n o t   s u p p o r t   s t r f t i m e  
+ [main 0c33f9b] Auto-update weather data: Fri 05/22/2026  3:21:03.66
+ 2 files changed, 18 insertions(+)
+To https://github.com/Frank-Ellingsen/weather-project.git
+   3be5a1f..0c33f9b  main -> main
+[ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
+ . \ v e n v \ S c r i p t s \ p y t h o n . e x e   :   T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) :  
+ A t   l i n e : 1   c h a r : 5  
+ +   &   {   . \ v e n v \ S c r i p t s \ p y t h o n . e x e   g e n e r a t e _ r e p o r t . p y   2 > & 1   |   T e e - O b j e c t   - F   . . .  
+ +           ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) : : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n  
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r  
+    
+     F i l e   " C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ g e n e r a t e _ r e p o r t . p y " ,   l i n e   1 5 6 ,   i n   < m o d u l e >  
+         s v g _ c h a r t   =   g e n e r a t e _ s v g _ c h a r t ( h i s t o r y _ d f )  
+     F i l e   " C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ g e n e r a t e _ r e p o r t . p y " ,   l i n e   1 0 5 ,   i n   g e n e r a t e _ s v g _ c h a r t  
+         d a t e _ s t r   =   t i m e s . i l o c [ i d x ] . s t r f t i m e ( ' % d   % b ' )  
+     F i l e   " p a n d a s / _ l i b s / t s l i b s / n a t t y p e . p y x " ,   l i n e   5 4 ,   i n   p a n d a s . _ l i b s . t s l i b s . n a t t y p e . _ m a k e _ e r r o r _ f u n c . f  
+ V a l u e E r r o r :   N a T T y p e   d o e s   n o t   s u p p o r t   s t r f t i m e  
  
