@@ -145,6 +145,9 @@ df = pd.read_sql("SELECT * FROM weather_kristiansand ORDER BY last_updated DESC 
 history_df = pd.read_sql("SELECT temp_c, last_updated FROM weather_kristiansand ORDER BY last_updated ASC", conn)
 conn.close()
 
+# Drop rows where critical data is missing (handles NaT/None)
+history_df = history_df.dropna(subset=['temp_c', 'last_updated'])
+
 if df.empty:
     print("[ERROR] No data found in database.")
     exit(1)
