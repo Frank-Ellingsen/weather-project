@@ -15498,4 +15498,13 @@ error: failed to execute prompt script (exit code 1)
 fatal: could not read Username for 'https://github.com': No such file or directory
 [ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
  [ S U C C E S S ]   D a s h b o a r d   w i t h   t r e n d l i n e   s a v e d :   C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ d o c s \ i n d e x . h t m l  
+ [main 02b3b24] Auto-update weather data: Wed 09/09/2026  6:51:29.41
+ 3 files changed, 17 insertions(+), 8 deletions(-)
+fatal: Unable to persist credentials with the 'wincredman' credential store.
+See https://aka.ms/gcm/credstores for more information.
+bash: line 1: /dev/tty: No such device or address
+error: failed to execute prompt script (exit code 1)
+fatal: could not read Username for 'https://github.com': No such file or directory
+[ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
+ [ S U C C E S S ]   D a s h b o a r d   w i t h   t r e n d l i n e   s a v e d :   C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ d o c s \ i n d e x . h t m l  
  
