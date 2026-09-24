@@ -21717,3 +21717,93 @@ Python 3.14.7
  [ S U C C E S S ]   C o m p l e t e   d a s h b o a r d   w i t h   7 - d a y   f o r e c a s t i n g   d i a g r a m   s a v e d :   C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ d o c s \ i n d e x . h t m l  
  [Thu 09/24/2026  9:01:38.73] generate_report.py completed successfully. 
 [Thu 09/24/2026  9:01:38.74] Checking for changes... 
+[Thu 09/24/2026  9:01:42.96] Changes detected. Committing and pushing... 
+[main 498c188] Auto-update weather data: Thu 09/24/2026  9:01:42.96
+ 4 files changed, 76 insertions(+), 55 deletions(-)
+fatal: Unable to persist credentials with the 'wincredman' credential store.
+See https://aka.ms/gcm/credstores for more information.
+bash: line 1: /dev/tty: No such device or address
+error: failed to execute prompt script (exit code 1)
+fatal: could not read Username for 'https://github.com': No such file or directory
+[Thu 09/24/2026  9:01:42.96] ERROR: GitHub upload failed. 
+[Thu 09/24/2026  9:01:51.67] Weather Task FAILED. 
+============================================================ 
+[Thu 09/24/2026  9:21:01.25] Starting Weather Task... 
+[Thu 09/24/2026  9:21:01.27] Run Mode: INTERACTIVE 
+[Thu 09/24/2026  9:21:01.30] Python: C:\Users\frank\AppData\Local\Python\bin\python.exe 
+Python 3.14.7
+[Thu 09/24/2026  9:21:01.96] Running weather.py... 
+[ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
+ [Thu 09/24/2026  9:21:05.52] weather.py completed successfully. 
+[Thu 09/24/2026  9:21:05.52] Running generate_report.py... 
+p y t h o n . e x e   :   T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) :  
+ A t   l i n e : 1   c h a r : 1  
+ +   &   ' C : \ U s e r s \ f r a n k \ A p p D a t a \ L o c a l \ P y t h o n \ b i n \ p y t h o n . e x e '   ' g e n e r a t e _ r e p o   . . .  
+ +   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) : : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n  
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r  
+    
+     F i l e   " C : \ U s e r s \ f r a n k \ A p p D a t a \ R o a m i n g \ P y t h o n \ P y t h o n 3 1 4 \ s i t e - p a c k a g e s \ p a n d a s \ _ _ i n i t _ _ . p y " ,   l i n e   2 3 ,   i n   < m o d u l e >  
+         _ _ i m p o r t _ _ ( _ d e p e n d e n c y )  
+         ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  
+ M o d u l e N o t F o u n d E r r o r :   N o   m o d u l e   n a m e d   ' n u m p y '  
+  
+ T h e   a b o v e   e x c e p t i o n   w a s   t h e   d i r e c t   c a u s e   o f   t h e   f o l l o w i n g   e x c e p t i o n :  
+  
+ T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) :  
+     F i l e   " C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ g e n e r a t e _ r e p o r t . p y " ,   l i n e   2 ,   i n   < m o d u l e >  
+         i m p o r t   p a n d a s   a s   p d  
+     F i l e   " C : \ U s e r s \ f r a n k \ A p p D a t a \ R o a m i n g \ P y t h o n \ P y t h o n 3 1 4 \ s i t e - p a c k a g e s \ p a n d a s \ _ _ i n i t _ _ . p y " ,   l i n e   2 5 ,   i n   < m o d u l e >  
+         r a i s e   I m p o r t E r r o r (  
+         . . . < 2   l i n e s > . . .  
+         )   f r o m   _ e  
+ I m p o r t E r r o r :   U n a b l e   t o   i m p o r t   r e q u i r e d   d e p e n d e n c y   n u m p y .   P l e a s e   s e e   t h e   t r a c e b a c k   f o r   d e t a i l s .  
+ [Thu 09/24/2026  9:21:07.60] ERROR: generate_report.py failed. 
+[Thu 09/24/2026  9:21:07.64] Weather Task FAILED. 
+============================================================ 
+[Thu 09/24/2026 10:51:01.84] Starting Weather Task... 
+[Thu 09/24/2026 10:51:01.87] Run Mode: INTERACTIVE 
+[Thu 09/24/2026 10:51:01.90] Python: C:\Users\frank\AppData\Local\Python\bin\python.exe 
+Python 3.14.7
+[Thu 09/24/2026 10:51:03.04] Running weather.py... 
+[ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
+ [Thu 09/24/2026 10:51:10.63] weather.py completed successfully. 
+[Thu 09/24/2026 10:51:10.65] Running generate_report.py... 
+p y t h o n . e x e   :   T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) :  
+ A t   l i n e : 1   c h a r : 1  
+ +   &   ' C : \ U s e r s \ f r a n k \ A p p D a t a \ L o c a l \ P y t h o n \ b i n \ p y t h o n . e x e '   ' g e n e r a t e _ r e p o   . . .  
+ +   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) : : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n  
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r  
+    
+     F i l e   " C : \ U s e r s \ f r a n k \ A p p D a t a \ R o a m i n g \ P y t h o n \ P y t h o n 3 1 4 \ s i t e - p a c k a g e s \ p a n d a s \ _ _ i n i t _ _ . p y " ,   l i n e   2 3 ,   i n   < m o d u l e >  
+         _ _ i m p o r t _ _ ( _ d e p e n d e n c y )  
+         ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  
+ M o d u l e N o t F o u n d E r r o r :   N o   m o d u l e   n a m e d   ' n u m p y '  
+  
+ T h e   a b o v e   e x c e p t i o n   w a s   t h e   d i r e c t   c a u s e   o f   t h e   f o l l o w i n g   e x c e p t i o n :  
+  
+ T r a c e b a c k   ( m o s t   r e c e n t   c a l l   l a s t ) :  
+     F i l e   " C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ g e n e r a t e _ r e p o r t . p y " ,   l i n e   2 ,   i n   < m o d u l e >  
+         i m p o r t   p a n d a s   a s   p d  
+     F i l e   " C : \ U s e r s \ f r a n k \ A p p D a t a \ R o a m i n g \ P y t h o n \ P y t h o n 3 1 4 \ s i t e - p a c k a g e s \ p a n d a s \ _ _ i n i t _ _ . p y " ,   l i n e   2 5 ,   i n   < m o d u l e >  
+         r a i s e   I m p o r t E r r o r (  
+         . . . < 2   l i n e s > . . .  
+         )   f r o m   _ e  
+ I m p o r t E r r o r :   U n a b l e   t o   i m p o r t   r e q u i r e d   d e p e n d e n c y   n u m p y .   P l e a s e   s e e   t h e   t r a c e b a c k   f o r   d e t a i l s .  
+ [Thu 09/24/2026 10:51:13.02] ERROR: generate_report.py failed. 
+[Thu 09/24/2026 10:51:13.08] Weather Task FAILED. 
+============================================================ 
+[Thu 09/24/2026 11:09:38.78] Starting Weather Task... 
+[Thu 09/24/2026 11:09:38.79] Run Mode: INTERACTIVE 
+[Thu 09/24/2026 11:09:38.83] Python: C:\Users\frank\AppData\Local\Python\bin\python.exe 
+Python 3.14.7
+[Thu 09/24/2026 11:09:38.91] Running weather.py... 
+[ S U C C E S S ]   W e a t h e r   d a t a   f o r   K r i s t i a n s a n d   s a v e d   s u c c e s s f u l l y .  
+ [Thu 09/24/2026 11:09:40.96] weather.py completed successfully. 
+[Thu 09/24/2026 11:09:40.96] Running generate_report.py... 
+[ I N F O ]   R u n n i n g   7 - d a y   t e m p e r a t u r e   f o r e c a s t i n g   e n g i n e . . .  
+ [ S U C C E S S ]   7 - d a y   f o r e c a s t   s a v e d   t o   d a t a b a s e   ( 1 6 8   h o u r l y   p r o j e c t i o n s ) .  
+ [ S U C C E S S ]   C o m p l e t e   d a s h b o a r d   w i t h   7 - d a y   f o r e c a s t i n g   d i a g r a m   s a v e d :   C : \ U s e r s \ f r a n k \ D e s k t o p \ g i t h u b \ w e a t h e r - p r o j e c t \ d o c s \ i n d e x . h t m l  
+ [Thu 09/24/2026 11:09:46.24] generate_report.py completed successfully. 
+[Thu 09/24/2026 11:09:46.24] Checking for changes... 
